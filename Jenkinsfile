@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -15,7 +16,7 @@ pipeline {
 
         stage('2. Application Build & Test') {
             steps {
-                bat 'C:\\Users\\STUDENT\\AppData\\Local\\Programs\\Python\\Python313\\python.exe app.py'
+                bat 'C:/Users/STUDENT/AppData/Local/Programs/Python/Python313/python.exe app.py'
             }
         }
 
@@ -35,7 +36,11 @@ pipeline {
 
     post {
         success {
-            echo "Pipeline succeeded! Image ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} is available locally and in the registry."
+            echo "Pipeline succeeded! Image ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} is available in the registry."
+        }
+
+        failure {
+            echo "Pipeline failed. Please check the Jenkins console output."
         }
     }
 }
